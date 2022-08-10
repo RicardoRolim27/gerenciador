@@ -49,6 +49,7 @@ public class Banco {
 	}
 
 	public void gravaCliente(Cliente cliente) {
+		cliente.setId(Banco.chaveSequencial++);
 		clientes.add(cliente);
 	}
 
@@ -92,5 +93,6 @@ public class Banco {
 		
 		return null;
 	}
+
 
 }
