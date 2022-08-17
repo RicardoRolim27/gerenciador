@@ -2,6 +2,7 @@ package alura.com.gerenciador.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 
 import alura.com.gerenciador.entities.Banco;
 import alura.com.gerenciador.entities.Empresa;
+import alura.com.gerenciador.servicies.GravaEmpresaService;
 
 
 @WebServlet("/cadastraEmpresa")
@@ -42,6 +44,15 @@ public class CadastraEmpresaService extends HttpServlet {
 		Banco banco = new Banco();
 		
 		banco.adiciona(empresa);
+		
+		GravaEmpresaService gravaEmpresa = new GravaEmpresaService();
+		
+		try {
+			gravaEmpresa.gravar(empresa);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		
 		System.out.println(empresa.getId());
 		System.out.println(empresa.getName());
